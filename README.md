@@ -123,7 +123,7 @@ http://localhost:8000/api/get-weather-forecast?date=2022-05-13 10:25:49
 - The format of the date parameter is 'YYYY-MM-DD HH:mm:ss'.
 - An example is '2022-05-13 10:25:49'.
 - If you specify a date and time within 5 days of today, you will get the weather information.
-- The following is the example of JSON response givin by this Web API.
+- The following is an example of JSON response given by this Web API.
 
 ```
 {
@@ -147,7 +147,7 @@ http://localhost:8000/api/get-weather-forecast?date=2022-05-13 10:25:49
 
 - First, it tries to retrieve data from the local SQLite server.
 - If it fails to retrieve data from the SQLite server, it accesses the following site to collect weather information.
-- If the weather information cannot be retrieved from the following sites, an error response is returned.
+- If the weather information cannot be retrieved from the following site, an error response is returned.
 
 ```
 https://openweathermap.org/api
@@ -168,7 +168,7 @@ $ php artisan schedule:run
 $ php artisan queue:work
 ```
 
-- When I tested task scheduling, I modified a schedule method with the following way.(in app/Console/Kernel.php)
+- When testing task scheduling, the scheduling method was modified as follows. (app/Console/Kernel.php)
 ```
 protected function schedule(Schedule $schedule)
 {
