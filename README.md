@@ -71,11 +71,73 @@ https://openweathermap.org/api
 (https://api.openweathermap.org/data/2.5/forecast)
 
 
+# setup
+
+1. Prepare vendor directory with the following command
+
+$ composer install
+
+2. Prepare SQLite file
+
+Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
+
+$ sudo apt-get install php7.4-sqlite3
+
+Prepare the database file with following command.
+
+$ touch database/database.sqlite
+
+3. Prepare .env file
+
+You can use .env.weather-forecast as a reference file.
+
+4. Prepare a crontab setting (It's not required for a simple Web API test.)
+
+This code collects weather forecasts for New York, London, Paris, Berlin and Tokyo every 6 hours.
 You need to add a single cron configuration entry to your server that runs the schedule:run command every minute.
 
 * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
 
-This code collects weather forecasts for New York, London, Paris, Berlin and Tokyo every 6 hours.
+
+# a simple Web API test
+
+1. start server for a simple test
+
+$ php artisan serve
+
+2. access the following address
+
+http://localhost:8000/api/get-weather-forecast?date=2022-05-13 10:25:49
+
+The format of the date parameter is 'YYYY-MM-DD HH:mm:ss'.
+An example is '2022-05-13 10:25:49'.
+If you specify a date and time within 5 days of today, you will get the weather information.
+The following is the example of JSON response givin by this Web API.
+
+{
+    "id": "9",
+    "dt": "1652432400",
+    "dt_txt": "2022-05-13 09:00:00",
+    "new_york_main": "Clouds",
+    "new_york_description": "overcast clouds",
+    "london_main": "Clouds",
+    "london_description": "overcast clouds",
+    "paris_main": "Clouds",
+    "paris_description": "scattered clouds",
+    "berlin_main": "Clouds",
+    "berlin_description": "broken clouds",
+    "tokyo_main": "Rain",
+    "tokyo_description": "moderate rain",
+    "updated_at": "2022-05-12 06:11:20",
+    "created_at": "2022-05-12 06:11:20"
+}
+
+3. First, it tries to retrieve data from the local SQLite server.
+   If it fails to retrieve data from the SQLite server, it accesses the following site to collect weather information.
+   If the weather information cannot be retrieved from the following sites, an error response is returned.
+
+https://openweathermap.org/api
+(https://api.openweathermap.org/data/2.5/forecast)
 
 
 # test commands
@@ -97,9 +159,6 @@ When I tested task scheduling, I modified a schedule method with the following w
 --------------------------------
 
 # other information
-
-Since I used SQLite, I installed SQLite with the following command.
-$ sudo apt-get install php7.4-sqlite3 
 
 I added or updated the following files on Laravel Framework 8.83.11.
 --------------------------------
