@@ -81,13 +81,13 @@ $ composer install
 
 2. Prepare SQLite file
 
-    - Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
+- Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
 
 ```
 $ sudo apt-get install php7.4-sqlite3
 ```
 
-    - Prepare the database file with following command.
+- Prepare the database file with following command.
 
 ```
 $ touch database/database.sqlite
