@@ -80,7 +80,7 @@ class WeatherForecastInquiryTest extends TestCase
         $response->assertStatus(200)
             ->assertJson([
                 'Result' => 'Failed',
-                'Response' => 'No weather data was found for the specified date.',
+                'Error' => 'No weather data was found for the specified date.',
                 'Date' => $date
             ]);
     }
