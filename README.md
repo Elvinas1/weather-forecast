@@ -87,10 +87,16 @@ $ composer install
 $ sudo apt-get install php7.4-sqlite3
 ```
 
-- Prepare the database file with following command.
+- Prepare the empty database file with the following command.
 
 ```
 $ touch database/database.sqlite
+```
+
+- Prepare the database tables with the following command.
+
+```
+$ php artisan migrate
 ```
 
 3. Prepare .env file
