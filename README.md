@@ -64,3 +64,56 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 # weather-forecast
+
+This code gathers weather forecast information from the following site by using Web API.
+
+https://openweathermap.org/api
+(https://api.openweathermap.org/data/2.5/forecast)
+
+
+You need to add a single cron configuration entry to your server that runs the schedule:run command every minute.
+
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+
+This code collects weather forecasts for New York, London, Paris, Berlin and Tokyo every 6 hours.
+
+
+# test commands
+
+You can test the codes with the following command.
+$ php artisan test
+
+You can test task scheduling with the following commands.
+$ php artisan schedule:run
+$ php artisan queue:work
+
+When I tested task scheduling, I modified a schedule method with the following way.
+(in app/Console/Kernel.php)
+--------------------------------
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->job(new WeatherForecastInquiryJob)->everyMinute();
+    }
+--------------------------------
+
+# other information
+
+Since I used SQLite, I installed SQLite with the following command.
+$ sudo apt-get install php7.4-sqlite3 
+
+I added or updated the following files on Laravel Framework 8.83.11.
+--------------------------------
+.env
+.env.testing
+phpunit.xml
+routes/api.php
+app/Console/Kernel.php
+app/Providers/EventServiceProvider.php
+app/Http/Controllers/WeatherForecastInquiryController.php
+app/Events/WeatherForecastInquiryEvent.php
+app/Jobs/WeatherForecastInquiryJob.php
+app/Listeners/WeatherForecastInquiryNotification.php
+tests/Feature/WeatherForecastInquiryTest.php
+database/migrations/2022_05_06_013400_weather_data.php
+database/database.sqlite
+--------------------------------
