@@ -108,13 +108,13 @@ $ touch database/database.sqlite
 
 # a simple Web API test
 
-1. start server for a simple test
+1. Start server for a simple test
 
 ```
 $ php artisan serve
 ```
 
-2. access the following address
+2. Access the following address
 
 ```
 http://localhost:8000/api/get-weather-forecast?date=2022-05-13 10:25:49

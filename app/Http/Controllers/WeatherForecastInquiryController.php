@@ -18,7 +18,7 @@ class WeatherForecastInquiryController extends Controller
 
         $dt_txt = $request->date;
         if (!preg_match('/\A\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\z/', $dt_txt)) {
-            $return_value = ['Error' => 'Format Error', 'Date' => $request->date];
+            $return_value = ['Result' => 'Failed', 'Error' => 'Format Error', 'Date' => $request->date];
             return response()->json($return_value);
         }
 
@@ -32,7 +32,7 @@ class WeatherForecastInquiryController extends Controller
         }
 
         if ($dt === false || $dt === 0) {
-            $return_value = ['Error' => 'Incorrect Date', 'Date' => $request->date];
+            $return_value = ['Result' => 'Failed', 'Error' => 'Incorrect Date', 'Date' => $request->date];
             return response()->json($return_value);
         }
 
@@ -54,10 +54,14 @@ class WeatherForecastInquiryController extends Controller
         }
 
         if (empty($weather_data_array)) {
-            $return_value = ['Response' => 'No weather data was found for the specified date.', 'Date' => $request->date];
+            $return_value = ['Result' => 'Failed', 'Error' => 'No weather data was found for the specified date.', 'Date' => $request->date];
             return response()->json($return_value);
         }
 
-        return response()->json($weather_data_array[0]);
+        $weather_response_result = ['Result' => 'Success'];
+        $weather_response = $weather_data_array[0];
+        $weather_response = json_decode(json_encode($weather_response), true);
+        $weather_response = array_merge($weather_response_result, $weather_response);
+        return response()->json($weather_response);
     }
 }
