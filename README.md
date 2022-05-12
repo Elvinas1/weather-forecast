@@ -95,12 +95,12 @@ $ touch database/database.sqlite
 
 3. Prepare .env file
 
-You can use .env.weather-forecast as a reference file.
+- You can use .env.weather-forecast as a reference file.
 
 4. Prepare a crontab setting (It's not required for a simple Web API test.)
 
-This code collects weather forecasts for New York, London, Paris, Berlin and Tokyo every 6 hours.
-You need to add a single cron configuration entry to your server that runs the schedule:run command every minute.
+- This code collects weather forecasts for New York, London, Paris, Berlin and Tokyo every 6 hours.
+- You need to add a single cron configuration entry to your server that runs the schedule:run command every minute.
 
 ```
 * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
@@ -110,17 +110,22 @@ You need to add a single cron configuration entry to your server that runs the s
 
 1. start server for a simple test
 
+```
 $ php artisan serve
+```
 
 2. access the following address
 
+```
 http://localhost:8000/api/get-weather-forecast?date=2022-05-13 10:25:49
+```
 
-The format of the date parameter is 'YYYY-MM-DD HH:mm:ss'.
-An example is '2022-05-13 10:25:49'.
-If you specify a date and time within 5 days of today, you will get the weather information.
-The following is the example of JSON response givin by this Web API.
+- The format of the date parameter is 'YYYY-MM-DD HH:mm:ss'.
+- An example is '2022-05-13 10:25:49'.
+- If you specify a date and time within 5 days of today, you will get the weather information.
+- The following is the example of JSON response givin by this Web API.
 
+```
 {
     "id": "9",
     "dt": "1652432400",
@@ -138,10 +143,11 @@ The following is the example of JSON response givin by this Web API.
     "updated_at": "2022-05-12 06:11:20",
     "created_at": "2022-05-12 06:11:20"
 }
+```
 
-3. First, it tries to retrieve data from the local SQLite server.
-   If it fails to retrieve data from the SQLite server, it accesses the following site to collect weather information.
-   If the weather information cannot be retrieved from the following sites, an error response is returned.
+- First, it tries to retrieve data from the local SQLite server.
+- If it fails to retrieve data from the SQLite server, it accesses the following site to collect weather information.
+- If the weather information cannot be retrieved from the following sites, an error response is returned.
 
 ```
 https://openweathermap.org/api
@@ -150,31 +156,30 @@ https://openweathermap.org/api
 
 # test commands
 
-You can test the codes with the following command.
+- You can test the codes with the following command.
+
 ```
 $ php artisan test
 ```
 
-You can test task scheduling with the following commands.
+- You can test task scheduling with the following commands.
 ```
 $ php artisan schedule:run
 $ php artisan queue:work
 ```
 
-When I tested task scheduling, I modified a schedule method with the following way.
-(in app/Console/Kernel.php)
---------------------------------
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->job(new WeatherForecastInquiryJob)->everyMinute();
-    }
---------------------------------
+- When I tested task scheduling, I modified a schedule method with the following way.(in app/Console/Kernel.php)
+```
+protected function schedule(Schedule $schedule)
+{
+    $schedule->job(new WeatherForecastInquiryJob)->everyMinute();
+}
+```
 
 # other information
-
-I added or updated the following files on Laravel Framework 8.83.11.
---------------------------------
-.env
+- I added or updated the following files on Laravel Framework 8.83.11.
+```
+.env.weather-forecast
 .env.testing
 phpunit.xml
 routes/api.php
@@ -187,4 +192,4 @@ app/Listeners/WeatherForecastInquiryNotification.php
 tests/Feature/WeatherForecastInquiryTest.php
 database/migrations/2022_05_06_013400_weather_data.php
 database/database.sqlite
---------------------------------
+```
