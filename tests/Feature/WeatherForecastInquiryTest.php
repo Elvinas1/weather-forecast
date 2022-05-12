@@ -40,6 +40,7 @@ class WeatherForecastInquiryTest extends TestCase
         $response = $this->getJson('/api/get-weather-forecast');
         $response->assertStatus(200)
             ->assertJson([
+                'Result' => 'Failed',
                 'Error' => 'Format Error',
                 'Date' => ''
             ]);
@@ -52,6 +53,7 @@ class WeatherForecastInquiryTest extends TestCase
         $response = $this->getJson('/api/get-weather-forecast?date=' . $date);
         $response->assertStatus(200)
             ->assertJson([
+                'Result' => 'Failed',
                 'Error' => 'Format Error',
                 'Date' => $date
             ]);
@@ -64,6 +66,7 @@ class WeatherForecastInquiryTest extends TestCase
         $response = $this->getJson('/api/get-weather-forecast?date=' . $date);
         $response->assertStatus(200)
             ->assertJson([
+                'Result' => 'Failed',
                 'Error' => 'Incorrect Date',
                 'Date' => $date
             ]);
@@ -76,6 +79,7 @@ class WeatherForecastInquiryTest extends TestCase
         $response = $this->getJson('/api/get-weather-forecast?date=' . $date);
         $response->assertStatus(200)
             ->assertJson([
+                'Result' => 'Failed',
                 'Response' => 'No weather data was found for the specified date.',
                 'Date' => $date
             ]);
@@ -91,6 +95,7 @@ class WeatherForecastInquiryTest extends TestCase
         $response = $this->getJson('/api/get-weather-forecast?date=' . $date);
         $response->assertStatus(200)
             ->assertJsonStructure([
+                'Result',
                 'id',
                 'dt',
                 'dt_txt',
