@@ -75,17 +75,23 @@ https://openweathermap.org/api
 
 1. Prepare vendor directory with the following command
 
+```
 $ composer install
+```
 
 2. Prepare SQLite file
 
-Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
+    - Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
 
+```
 $ sudo apt-get install php7.4-sqlite3
+```
 
-Prepare the database file with following command.
+    - Prepare the database file with following command.
 
+```
 $ touch database/database.sqlite
+```
 
 3. Prepare .env file
 
@@ -96,8 +102,9 @@ You can use .env.weather-forecast as a reference file.
 This code collects weather forecasts for New York, London, Paris, Berlin and Tokyo every 6 hours.
 You need to add a single cron configuration entry to your server that runs the schedule:run command every minute.
 
+```
 * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
-
+```
 
 # a simple Web API test
 
@@ -136,18 +143,23 @@ The following is the example of JSON response givin by this Web API.
    If it fails to retrieve data from the SQLite server, it accesses the following site to collect weather information.
    If the weather information cannot be retrieved from the following sites, an error response is returned.
 
+```
 https://openweathermap.org/api
 (https://api.openweathermap.org/data/2.5/forecast)
-
+```
 
 # test commands
 
 You can test the codes with the following command.
+```
 $ php artisan test
+```
 
 You can test task scheduling with the following commands.
+```
 $ php artisan schedule:run
 $ php artisan queue:work
+```
 
 When I tested task scheduling, I modified a schedule method with the following way.
 (in app/Console/Kernel.php)
