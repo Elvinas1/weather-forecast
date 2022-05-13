@@ -39,13 +39,13 @@ class WeatherForecastInquiryNotification
      */
     public function handle(WeatherForecastInquiryEvent $event)
     {
-        $weather_dt_list = $this->getWeatherFromOpenWeatherMap();
+        $weather_dt_cities_list = $this->getWeatherFromOpenWeatherMap();
 
         $columns_to_be_updated = ['new_york_main', 'new_york_description', 'london_main', 'london_description',
                                   'paris_main', 'paris_description', 'berlin_main', 'berlin_description',
                                   'tokyo_main', 'tokyo_description'];
 
-        DB::table('weather_data')->upsert($weather_dt_list, ['dt'], $columns_to_be_updated);
+        DB::table('weather_data')->upsert($weather_dt_cities_list, ['dt'], $columns_to_be_updated);
     }
 
 
