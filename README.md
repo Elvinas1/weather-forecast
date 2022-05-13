@@ -79,7 +79,11 @@ https://openweathermap.org/api
 $ composer install
 ```
 
-2. Prepare SQLite file
+2. Prepare .env file
+
+- You can use .env.weather-forecast as a reference file.
+
+3. Prepare SQLite file
 
 - Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
 
@@ -98,10 +102,6 @@ $ touch database/database.sqlite
 ```
 $ php artisan migrate
 ```
-
-3. Prepare .env file
-
-- You can use .env.weather-forecast as a reference file.
 
 4. Prepare a crontab setting (It's not required for a simple Web API test.)
 
