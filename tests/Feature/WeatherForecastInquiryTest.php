@@ -60,7 +60,7 @@ class WeatherForecastInquiryTest extends TestCase
     }
 
 
-    public function testGetWeatherForecastDataIncorrectDate(): void
+    public function testGetWeatherForecastIncorrectDate(): void
     {
         $date = '2022-99-99 03:00:00';
         $response = $this->getJson('/api/get-weather-forecast?date=' . $date);
