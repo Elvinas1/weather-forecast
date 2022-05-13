@@ -178,6 +178,7 @@ $ php artisan queue:work
 ```
 protected function schedule(Schedule $schedule)
 {
+    // $schedule->job(new WeatherForecastInquiryJob)->everySixHours();
     $schedule->job(new WeatherForecastInquiryJob)->everyMinute();
 }
 ```
