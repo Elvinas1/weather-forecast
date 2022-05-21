@@ -85,9 +85,10 @@ $ composer install
 
 3. Prepare SQLite file
 
-- Since I used SQLite on Ubuntu 20.04, I installed SQLite with the following command.
+- Since I used SQLite with php 7.4 on Ubuntu 20.04, I installed sqlite3 and php-sqlite3 with the following command.
 
 ```
+$ sudo apt install sqlite3
 $ sudo apt-get install php7.4-sqlite3
 ```
 
@@ -197,6 +198,7 @@ app/Events/WeatherForecastInquiryEvent.php
 app/Jobs/WeatherForecastInquiryJob.php
 app/Listeners/WeatherForecastInquiryNotification.php
 tests/Feature/WeatherForecastInquiryTest.php
+database/migrations/2022_05_05_074622_create_jobs_table.php
 database/migrations/2022_05_06_013400_weather_data.php
 database/database.sqlite
 ```
