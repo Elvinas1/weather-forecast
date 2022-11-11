@@ -72,13 +72,15 @@ https://openweathermap.org/api
 
 # about this program
 
-English Blog Posts:
+English Blog Posts
+
 https://www.leafwindow.com/en/create-a-weather-forecast-web-api-with-laravel-en/
 https://www.leafwindow.com/en/create-a-weather-forecast-web-api-with-laravel-2-en/
 https://www.leafwindow.com/en/create-a-weather-forecast-web-api-with-laravel-3-en/
 
 
-Japanese Blog Posts:
+Japanese Blog Posts
+
 https://www.leafwindow.com/create-a-weather-forecast-web-api-with-laravel/
 https://www.leafwindow.com/create-a-weather-forecast-web-api-with-laravel-2/
 https://www.leafwindow.com/create-a-weather-forecast-web-api-with-laravel-3/
